@@ -9,7 +9,7 @@
 <h1>Список машин</h1>
 {% for car in cars %}
     <div>
-        <h2>{{ car.name }}</h2>
+        <h2><a href="{% url 'car' car_id=car.id %}">{{ car.name }}</a></h2>
         <div>{{ car.year }}</div>
         <div>{{ car.engine }}</div>
         <div>{{ car.power }}</div>
