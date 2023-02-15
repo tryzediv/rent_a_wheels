@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cars.apps.CarsConfig',
     'sorl.thumbnail',
+    'phonenumber_field',
+    'orders',
 ]
 
 MIDDLEWARE = [
