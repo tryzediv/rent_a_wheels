@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Колеса в аренду</title>
+</head>
+<body>
+<h1>Список машин</h1>
+{% for car in cars %}
+    <div>
+        <h2>{{ car.name }}</h2>
+        <div>{{ car.year }}</div>
+        <div>{{ car.engine }}</div>
+        <div>{{ car.power }}</div>
+        <div>{{ car.transmission }}</div>
+        <div>{{ car.price }}</div>
+    </div>
+{% endfor %}
+</body>
+</html>
