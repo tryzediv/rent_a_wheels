@@ -1,0 +1,23 @@
+{% load thumbnail %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ car.name}}</title>
+</head>
+<body>
+    <div>
+        <h1>{{ car.name }}</h1>
+        <div>{{ car.year }}</div>
+        <div>{{ car.engine }}</div>
+        <div>{{ car.power }}</div>
+        <div>{{ car.body }}</div>
+        <div>{{ car.transmission }}</div>
+        <div>{{ car.price }}</div>
+        <div>{{ car.description }}</div>
+        {% thumbnail car.photo '650x400' crop='center' as im %}
+            <img src="{{ im.url }}" alt="{{ car.name }}">
+        {% endthumbnail %}
+    </div>
+</body>
+</html>
