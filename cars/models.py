@@ -9,7 +9,8 @@ class Car(models.Model):
     body = models.CharField('Тип кузова', max_length=50)
     transmission = models.CharField('Тип коробки передач', max_length=50)
     price = models.IntegerField('Цена')
-    description = models.TextField('Описание')
+    description = models.TextField('Описание', default='', blank=True)
+    photo = models.ImageField('Фотография', upload_to='cars/photos', default='', blank=True)
 
     class Meta:
         verbose_name = 'Автомобиль'
