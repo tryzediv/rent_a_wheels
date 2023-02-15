@@ -9,10 +9,10 @@ def cars_list(request):
 
 
 def car_detail(request, car_id):
-    form = OrderForm(request.POST or None)
+    car = get_object_or_404(Car, id=car_id)
+    form = OrderForm(request.POST or None, initial={'car': car})
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-    car = get_object_or_404(Car, id=car_id)
     return render(request, 'cars/car_detail.html', {'car': car, 'form': form})
 
