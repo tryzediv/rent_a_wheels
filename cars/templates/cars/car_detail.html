@@ -17,9 +17,13 @@
     </div>
 
     <h2>Заявка</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Отправить заявку</button>
-    </form>
+    {% if sent %}
+        <p>Спасибо! Ваша заявка принята.</p>
+    {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить заявку</button>
+            <button type="reset">Очистить</button>
+        </form>
 {% endblock %}
