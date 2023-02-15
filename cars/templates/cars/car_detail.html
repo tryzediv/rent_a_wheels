@@ -1,11 +1,6 @@
+{% extends 'index.html' %}
 {% load thumbnail %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ car.name}}</title>
-</head>
-<body>
+{% block application %}
 <a href="{% url 'home' %}">Главная</a>
     <div>
         <h1>{{ car.name }}</h1>
@@ -20,5 +15,4 @@
             <img src="{{ im.url }}" alt="{{ car.name }}">
         {% endthumbnail %}
     </div>
-</body>
-</html>
+{% endblock %}

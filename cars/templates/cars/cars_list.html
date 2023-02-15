@@ -1,11 +1,6 @@
+{% extends 'index.html' %}
 {% load thumbnail %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Колеса в аренду</title>
-</head>
-<body>
+{% block application %}
 <h1>Список машин</h1>
 {% for car in cars %}
     <div>
@@ -20,5 +15,4 @@
         {% endthumbnail %}
     </div>
 {% endfor %}
-</body>
-</html>
+{% endblock %}
