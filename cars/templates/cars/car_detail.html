@@ -5,11 +5,11 @@
     <div>
         <h1>{{ car.name }}</h1>
         <div>Год выпуска: {{ car.year }}</div>
-        <div>Объем двигателя: {{ car.engine }}</div>
-        <div>Мощность: {{ car.power }}</div>
+        <div>Объем двигателя: {{ car.engine }} л.</div>
+        <div>Мощность: {{ car.power }} л/с</div>
         <div>Кузов: {{ car.body }}</div>
         <div>КПП: {{ car.transmission }}</div>
-        <div>Цена: {{ car.price }}</div>
+        <div>Цена: {{ car.price }} р.</div>
         <div>{{ car.description }}</div>
         {% thumbnail car.photo '650x400' crop='center' as im %}
             <img src="{{ im.url }}" alt="{{ car.name }}">
