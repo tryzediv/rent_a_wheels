@@ -1,3 +1,4 @@
+{% load thumbnail %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,9 @@
         <div>{{ car.power }}</div>
         <div>{{ car.transmission }}</div>
         <div>{{ car.price }}</div>
+        {% thumbnail car.photo '325x200' crop='center' as im %}
+            <img src="{{ im.url }}" alt="{{ car.name }}">
+        {% endthumbnail %}
     </div>
 {% endfor %}
 </body>
