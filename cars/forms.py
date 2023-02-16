@@ -2,7 +2,6 @@ from django import forms
 
 
 class CarsFilterForm(forms.Form):
-    query = forms.CharField(label='Поиск', required=False)
     min_price = forms.IntegerField(label='Цена от', required=False)
     max_price = forms.IntegerField(label='Цена до', required=False)
     min_year = forms.IntegerField(label='Год от', required=False)
@@ -19,3 +18,7 @@ class CarsFilterForm(forms.Form):
         ('year', 'Сначала старые'),
         ('-year', 'Сначала новые')
     ])
+
+
+class CarSearch(forms.Form):
+    search = forms.CharField(label='Поиск', required=False)

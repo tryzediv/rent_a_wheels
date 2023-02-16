@@ -83,7 +83,7 @@ footer {
 }
 
 .search-form {
-    width: 850px;
+    width: 740px;
     display: block;
     margin: 0 auto 30px auto;
 }
@@ -165,7 +165,7 @@ footer {
 }
 
 .car-detail .car img {
-    width: 675px;
+    width: 600px;
     height: 350px;
     display: block;
     margin-bottom: 10px;
@@ -251,4 +251,17 @@ footer {
     margin-bottom: 15px;
     cursor: pointer;
     margin-top: 17px;
+}
+
+#social {
+	float: right;
+	margin-left: 20px;
+	width: 130px;
+}
+
+.social-icon-small  {
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	margin: 5px 6px 0 0;
 }
