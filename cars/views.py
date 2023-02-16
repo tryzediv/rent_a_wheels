@@ -3,11 +3,18 @@ from cars.models import Car
 from orders.forms import OrderForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from cars.forms import CarsFilterForm
 
 
 def cars_list(request):
     cars = Car.objects.all()
-    return render(request, 'cars/cars_list.html', {'cars': cars})
+    form = CarsFilterForm(request.GET)
+    if form.is_valid():
+        if form.cleaned_data['min_price']:
+            cars = cars.filter(price__gte=form.cleaned_data['min_price'])
+        if form.cleaned_data['max_price']:
+            cars = cars.filter(price__lte=form.cleaned_data['max_price'])
+    return render(request, 'cars/cars_list.html', {'cars': cars, 'form': form})
 
 
 def car_detail(request, car_id):

@@ -2,17 +2,22 @@
 {% load thumbnail %}
 {% block application %}
 <h1>Список машин</h1>
-{% for car in cars %}
-    <div>
-        <h2><a href="{% url 'car' car_id=car.id %}">{{ car.name }}</a></h2>
-        <div>{{ car.year }}</div>
-        <div>{{ car.engine }}</div>
-        <div>{{ car.power }}</div>
-        <div>{{ car.transmission }}</div>
-        <div>{{ car.price }}</div>
-        {% thumbnail car.photo '325x200' crop='center' as im %}
-            <img src="{{ im.url }}" alt="{{ car.name }}">
-        {% endthumbnail %}
-    </div>
-{% endfor %}
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Поиск</button>
+        <a href="{% url 'home' %}"><button type="button">Сбросить</button></a>
+    </form>
+    {% for car in cars %}
+        <div>
+            <h2><a href="{% url 'car' car_id=car.id %}">{{ car.name }}</a></h2>
+            <div>{{ car.year }}</div>
+            <div>{{ car.engine }}</div>
+            <div>{{ car.power }}</div>
+            <div>{{ car.transmission }}</div>
+            <div>{{ car.price }}</div>
+            {% thumbnail car.photo '325x200' crop='center' as im %}
+                <img src="{{ im.url }}" alt="{{ car.name }}">
+            {% endthumbnail %}
+        </div>
+    {% endfor %}
 {% endblock %}
