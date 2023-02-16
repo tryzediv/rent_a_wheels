@@ -1,23 +1,27 @@
 {% extends 'index.html' %}
+{% load humanize %}
 {% load thumbnail %}
 {% block application %}
-<h1>Список машин</h1>
-    <form method="get">
+
+    <form action="" method="get" class="search-form">
         {{ form.as_p }}
-        <button type="submit">Поиск</button>
-        <a href="{% url 'home' %}"><button type="button">Сбросить</button></a>
+        <input type="submit" value="Поиск">
+        <a href="{% url 'home' %}"><button type="button" class="button">Сбросить</button></a>
     </form>
+    <div style="clear: both"></div>
+
+    <div class="cars">
     {% for car in cars %}
-        <div>
-            <h2><a href="{% url 'car' car_id=car.id %}">{{ car.name }}</a></h2>
-            <div>{{ car.year }}</div>
-            <div>{{ car.engine }}</div>
-            <div>{{ car.power }}</div>
-            <div>{{ car.transmission }}</div>
-            <div>{{ car.price }}</div>
-            {% thumbnail car.photo '325x200' crop='center' as im %}
-                <img src="{{ im.url }}" alt="{{ car.name }}">
-            {% endthumbnail %}
+        <div class="car">
+            <a href="{% url 'car' car_id=car.id %}" class="img">
+                {% if car.photo %}
+                    <img src="{{ car.photo.url }}" alt="{{ car.name }}">
+                {% endif %}
+            </a>
+            <h2><a href="{% url 'car' car_id=car.id %}">{{ car.name }}</a> </h2>
+            <div class="price">{{ car.price | intcomma }} р/сутки</div>
         </div>
     {% endfor %}
+    </div>
+    <div style="clear: both"></div>
 {% endblock %}

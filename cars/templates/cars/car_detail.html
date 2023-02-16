@@ -1,36 +1,42 @@
 {% extends 'index.html' %}
-{% load thumbnail %}
+{% load humanize %}
+
+{% block html_title %}
+    {{ car.name }}
+{% endblock %}
+
 {% block application %}
-<a href="{% url 'home' %}">Главная</a>
-    <div>
-        <h1>{{ car.name }}</h1>
-        <div>Год выпуска: {{ car.year }}</div>
-        <div>Объем двигателя: {{ car.engine }} л.</div>
-        <div>Мощность: {{ car.power }} л/с</div>
-        <div>Кузов: {{ car.body }}</div>
-        <div>КПП: {{ car.transmission }}</div>
-        <div>Цена: {{ car.price }} р.</div>
-        <div>{{ car.description }}</div>
-        {% thumbnail car.photo '650x400' crop='center' as im %}
-            <img src="{{ im.url }}" alt="{{ car.name }}">
-        {% endthumbnail %}
-    </div>
+    <div class="car-detail">
+            <h2 class="car-name">{{ car.name }}<span class="price">{{ car.price | intcomma }} руб.</span></h2>
+            <div class="car">
+                <div class="price">Год выпуска: {{ car.year }}</div>
+                <div class="price">Объем двигателя: {{ car.engine }} л.</div>
+                <div class="price">Мощность: {{ car.power }} л/с</div>
+                <div class="price">Кузов: {{ car.body }}</div>
+                <div class="price">КПП: {{ car.transmission }}</div>
+                {% if car.photo %}
+                    <img src="{{ car.photo.url }}" alt="{{ car.name }}">
+                {% endif %}
+                <div class="description">{{ car.description }}</div>
+            </div>
 
-<h2>Заявка</h2>
-    {% if car.active %}
-        {% if sent %}
-            <p>Спасибо! Ваша заявка принята.</p>
-        {% endif %}
+        <div class="order">
+            <h2>Оставить заявку</h2>
+            {% if car.active %}
+                {% if sent %}
+                    Спасибо! Ваша заявка принята.
+                {% endif %}
 
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Отправить заявку</button>
-            <button type="reset">Очистить</button>
-        </form>
+                <form action="" method="post" class="order-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Отправить заявку">
+                </form>
 
-    {% else %}
-        <p>Машина временно недоступна, попробуйте зайти позже.</p>
-    {% endif %}
-
+            {% else %}
+                <p>Машина временно недоступна, попробуйте зайти позже.</p>
+            {% endif %}
+            </div>
+        </div>
+        <div style="clear: both"></div>
 {% endblock %}
