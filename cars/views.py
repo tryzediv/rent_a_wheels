@@ -29,6 +29,8 @@ def cars_list(request):
                 Q(engine__icontains=form.cleaned_data['query']) |
                 Q(power__icontains=form.cleaned_data['query'])
             )
+        if form.cleaned_data['ordering']:
+            cars = cars.order_by(form.cleaned_data['ordering'])
     return render(request, 'cars/cars_list.html', {'cars': cars, 'form': form})
 
 
