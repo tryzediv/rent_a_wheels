@@ -11,6 +11,7 @@ class Car(models.Model):
     price = models.IntegerField('Цена')
     description = models.TextField('Описание', default='', blank=True)
     photo = models.ImageField('Фотография', upload_to='cars/photos', default='', blank=True)
+    active = models.BooleanField('Активен', default=True)
 
     class Meta:
         verbose_name = 'Автомобиль'

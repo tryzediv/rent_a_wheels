@@ -7,7 +7,7 @@ from cars.forms import CarsFilterForm
 
 
 def cars_list(request):
-    cars = Car.objects.all()
+    cars = Car.objects.filter(active=True)
     form = CarsFilterForm(request.GET)
     if form.is_valid():
         if form.cleaned_data['min_price']:
